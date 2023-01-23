@@ -1,3 +1,4 @@
+import pyperclip as pc
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
             'v', 'w', 'x', 'y', 'z']
 welcome = """
@@ -18,6 +19,7 @@ def enrypt(text, shift):
             temp += alphabet[index + shift - len(alphabet)]
         else:
             temp += alphabet[index + shift]
+    pc.copy(temp)
     return temp
 
 
@@ -29,6 +31,7 @@ def decrypt(text, shift):
             temp += alphabet[index - shift + len(alphabet)]
         else:
             temp += alphabet[index - shift]
+    pc.copy(temp)
     return temp
 print(welcome)
 direction = input("Type 'encode' to encrypt, type 'decode' to decrypt: \n")
@@ -38,3 +41,4 @@ if direction == "encode":
     print(enrypt(text, shift))
 else:
     print(decrypt(text, shift))
+print("The result is saved in the clipboard")
