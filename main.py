@@ -19,12 +19,16 @@ welcome = """
 # enryptor -=--=--=--=--=--=--=--=--=--=--=--=-
 def enrypt(text, shift):
     temp = ""
+
     for i in range(0, len(text)):
-        index = alphabet.index(text[i])
-        if (index + shift) >= len(alphabet):
-            temp += alphabet[index + shift - len(alphabet)]
+        if text[i] in alphabet:
+            index = alphabet.index(text[i])
+            if (index + shift) >= len(alphabet):
+                temp += alphabet[index + shift - len(alphabet)]
+            else:
+                temp += alphabet[index + shift]
         else:
-            temp += alphabet[index + shift]
+            temp += text[i]
     pc.copy(temp)
     return temp
 
@@ -33,11 +37,14 @@ def enrypt(text, shift):
 def decrypt(text, shift):
     temp = ""
     for i in range(0, len(text)):
-        index = alphabet.index(text[i])
-        if (index - shift) < 0:
-            temp += alphabet[index - shift + len(alphabet)]
+        if temp[i] in alphabet:
+            index = alphabet.index(text[i])
+            if (index - shift) < 0:
+                temp += alphabet[index - shift + len(alphabet)]
+            else:
+                temp += alphabet[index - shift]
         else:
-            temp += alphabet[index - shift]
+            temp += text[i]
     pc.copy(temp)
     return temp
 
