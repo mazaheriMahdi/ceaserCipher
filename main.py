@@ -48,10 +48,12 @@ direction = input("Type 'encode' to encrypt, type 'decode' to decrypt: \n")
 text = input("Type your message: \n").lower()
 shift = int(input("Type the shift number: \n"))
 # check & fix shift ratio -=--=--=--=--=--=--=--=--=--=--=--=-
-if shift > len(alphabet):
+while shift > len(alphabet):
     shift -= len(alphabet)
-elif shift < 0:
+if shift < 0:
     shift *= -1
+while shift > len(alphabet):
+    shift -= len(alphabet)
 # check user inputs-=--=--=--=--=--=--=--=--=--=--=--=--=--=-
 if direction == "encode":
     print(enrypt(text, shift))
